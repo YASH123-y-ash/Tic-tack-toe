@@ -2,6 +2,24 @@ package com.ticktacktoe;
 import java.util.*;
 public class TicTackToe {
 
+	static String[] board;
+	static void printBoard()
+    {
+        System.out.println("|---|---|---|");
+        System.out.println("| " + board[0] + " | "
+                           + board[1] + " | " + board[2]
+                           + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + board[3] + " | "
+                           + board[4] + " | " + board[5]
+                           + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + board[6] + " | "
+                           + board[7] + " | " + board[8]
+                           + " |");
+        System.out.println("|---|---|---|");
+    }
+
 	static char chooseXorO()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -17,14 +35,20 @@ public class TicTackToe {
 	}
 	
 	public static void main(String[] args) {
-	
-		System.out.println("Tic tac toe");
-		char[] gameBoard = new char[10];
-		for(int i = 0 ;i < gameBoard.length ; i++)
-		{
-			gameBoard[i] = ' ';
-		}
-		char input = chooseXorO();
+		System.out.println("welcome to Tic tac toe game");
+				char input = chooseXorO();
+				 board = new String[9];
+			  
+			        String winner = null;
+				for (int a = 0; a < 9; a++) {
+		            board[a] = String.valueOf(a + 1);
+		        }
+		  
+			        System.out.println("Welcome to 3x3 Tic Tac Toe.");
+			        printBoard();
+			  
 	}
+	
+	  
 }
 
