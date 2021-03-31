@@ -2,13 +2,20 @@ package com.ticktacktoe;
 
 public class TicTackToe {
 
+	public static char[] board = new char[9];
+
+	//for size of board
+		public static void sizeOfBoard()
+		{
+			for(int i=0; i<board.length;i++)
+			{
+				board[i] = ' ';
+			}
+		}
+	
 	public static void main(String[] args) {
 	
-		System.out.println("Tic tac toe");
-		char[] gameBoard = new char[10];
-		for(int i = 0 ;i < gameBoard.length ; i++)
-		{
-			gameBoard[i] = ' ';
-		}
+		sizeOfBoard();
+		
 	}
 }
