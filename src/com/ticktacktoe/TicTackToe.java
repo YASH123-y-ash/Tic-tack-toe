@@ -34,6 +34,11 @@ public class TicTackToe {
 		System.out.println("Choose x or o");
 		Scanner sc = new Scanner(System.in);
 		char chooseLetter = sc.next().charAt(0);
+		while(chooseLetter != 'x' && chooseLetter != 'o')
+		{
+			System.out.println("select X or o");
+			chooseLetter = sc.next().charAt(0);
+		}
 		if(chooseLetter == 'x')
 		{
 			System.out.println("player symbol to play the game is : "+chooseLetter);
@@ -53,7 +58,7 @@ public class TicTackToe {
 		else
 			System.out.println("invalid input choose between x or o");
 	}
-
+	
 	//to choose desired location in a board
 	public static void chooseLocatin()
 	{	
