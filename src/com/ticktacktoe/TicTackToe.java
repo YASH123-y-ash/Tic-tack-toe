@@ -2,59 +2,61 @@ package com.ticktacktoe;
 import java.util.*;
 
 /*
-@description: created a class to play tic toe game
-@parameter: taken method showBoard to show the game board  
+@description: created a class to play tic tac toe game
+@parameter: taken method showBoard() to show the game board  
  */
 
 public class TicTackToe {
 
 
-	public static char[] board = new char[9];
+	static char playerSymbol;
+	static char computerSymbol;
+	static Scanner sc = new Scanner(System.in);
 
-	public static char playerSymbol;
-	public static char computerSymbol;
-	public static int turn;
-
-	private static Object elseif;
-
-	//to initialize empty space to game board
-	public static void sizeOfBoard()
+	//  Creating an empty Board 
+	public static char[] createEmptyBoard() 
 	{
-		for(int i=0; i<board.length;i++)
+		char[] board = new char[9];
+		for (int i = 1; i < board.length; i++) 
 		{
 			board[i] = ' ';
 		}
+		return board;
 	}
 
-	//to choose between x and o
-	public static void chooseXorO()
-	{
-		System.out.println("Choose x or o");
-		Scanner sc = new Scanner(System.in);
-		char chooseLetter = sc.next().charAt(0);
-		if(chooseLetter == 'x')
-		{
-			System.out.println("player symbol to play the game is : "+chooseLetter);
-			System.out.println("computer symbol to play the game is : "+ "o");
-
-			playerSymbol = 'x';
-
+	// Taking Input from player to choose between X or O 
+	public static char chooseXorO() {
+		System.out.println("Enter the symbol:'X' or 'O' ");
+		char symbol = Character.toUpperCase(sc.next().charAt(0));
+		if (symbol == 'X' || symbol == 'O') {
+			playerSymbol(symbol);
+			return symbol;
+		} else {
+			System.out.println("Invalid Character. Try Again.");
+			return chooseXorO();
 		}
-		else if(chooseLetter == 'o')
-		{
-			System.out.println("computer symbol to play the game is : "+chooseLetter);
-			System.out.println("player symbol to play the game is : "+"x");
-
-			computerSymbol = 'o';
-
-		}
-		else
-			System.out.println("invalid input choose between x or o");
 	}
 
+	// Determine letter for player and computer 
+	public static void playerSymbol(char playerSymbols) {
 
-	//to show game board
-	public static void showBoard()
+		if(playerSymbols == 'X')
+		{
+			playerSymbol = 'X';
+			computerSymbol = 'O';
+		}
+		else if(playerSymbols == 'O')
+		{
+			playerSymbol = 'O';
+			computerSymbol = 'X';
+		}
+		System.out.println("player letter to play is "+playerSymbol);
+		System.out.println("computer letter to play is "+computerSymbol);
+
+	}
+
+	//showing empty Board 
+	public static void showBoard(char[] board)
 	{
 		System.out.println("--------------");
 		System.out.println("|  " +board[0]+ " | "+board[1] + " | "+board[2]+ " | ");
@@ -65,11 +67,12 @@ public class TicTackToe {
 		System.out.println("--------------");
 	}
 
-
 	public static void main(String[] args) {
 
-		sizeOfBoard();
-		chooseXorO();
-		showBoard();
+		char[] board = createEmptyBoard();
+		playerSymbol = chooseXorO();
+		showBoard(board);
 	}
+
 }
+
