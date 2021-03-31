@@ -162,7 +162,7 @@ public class TicTackToe {
 	public static void main(String[] args) {
 
 		sizeOfBoard();
-		chooseXorO();
+		playerSymbol = chooseXorO();
 		showBoard();
 		chooseLocatin();
 		
@@ -175,4 +175,3 @@ public class TicTackToe {
 			System.out.println("computer will play first");
 	}
 }
-
