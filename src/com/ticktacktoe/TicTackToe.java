@@ -1,21 +1,23 @@
 package com.ticktacktoe;
 
-public class TicTackToe {
+public class TicTackToe{
 
 	public static char[] board = new char[9];
 
-	//for size of board
-		public static void sizeOfBoard()
+	//  Creating an empty Board 
+	public static char[] createEmptyBoard() 
+	{
+		char[] board = new char[10];
+		for (int i = 1; i < board.length; i++) 
 		{
-			for(int i=0; i<board.length;i++)
-			{
-				board[i] = ' ';
-			}
+			board[i] = ' ';
 		}
-	
+		return board;
+	}
+
 	public static void main(String[] args) {
-	
-		sizeOfBoard();
-		
+
+		char[] board = createEmptyBoard(); 
+
 	}
 }
