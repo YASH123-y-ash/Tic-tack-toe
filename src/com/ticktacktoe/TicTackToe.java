@@ -156,6 +156,7 @@ public class TicTackToe {
 		else
 			return 0;
 	}
+<<<<<<< HEAD
 	
 	public void desireMove()
 	{
@@ -170,13 +171,17 @@ public class TicTackToe {
 	}
 	
 	
+=======
+
+
+>>>>>>> UC6-who-play-first
 	public static void main(String[] args) {
 
 		sizeOfBoard();
 		chooseXorO();
 		showBoard();
 		chooseLocatin();
-		
+
 		int toss = whoPlaysFirst();
 		if(toss == 1)
 		{
@@ -186,4 +191,7 @@ public class TicTackToe {
 			System.out.println("computer will play first");
 	}
 }
+
+
+
 
