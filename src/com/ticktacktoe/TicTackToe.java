@@ -3,7 +3,7 @@ package com.ticktacktoe;
 /*
 @description: created a class to play tic tack toe game
 
-@parametrs: taken a method chooseLocation() to choose desire location
+@parametrs: taken a method whoPlaysFirst() to choose who plays first
 
  */
 
@@ -17,7 +17,6 @@ public class TicTackToe {
 	public static char computerSymbol;
 	public static int turn;
 
-	private static Object elseif;
 
 	//for size of board
 	public static void sizeOfBoard()
@@ -141,6 +140,18 @@ public class TicTackToe {
 		System.out.println("--------------");
 	}
 
+	//to choose who plays first
+	public static  int whoPlaysFirst()
+	{
+
+		int  toss = (int) Math.floor(Math.random() * 10) % 2;
+		if(toss == 1)
+		{
+			return 1;
+		}
+		else
+			return 0;
+	}
 
 	public static void main(String[] args) {
 
@@ -148,6 +159,14 @@ public class TicTackToe {
 		chooseXorO();
 		showBoard();
 		chooseLocatin();
+		
+		int toss = whoPlaysFirst();
+		if(toss == 1)
+		{
+			System.out.println("player will play first");
+		}
+		else
+			System.out.println("computer will play first");
 	}
 }
 
