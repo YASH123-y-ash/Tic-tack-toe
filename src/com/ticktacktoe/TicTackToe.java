@@ -15,7 +15,6 @@ public class TicTackToe {
 
 	public static char playerSymbol;
 	public static char computerSymbol;
-	public static int turn;
 
 
 	//for size of board
@@ -33,6 +32,11 @@ public class TicTackToe {
 		System.out.println("Choose x or o");
 		Scanner sc = new Scanner(System.in);
 		char chooseLetter = sc.next().charAt(0);
+		while(chooseLetter != 'x' && chooseLetter != 'o')
+		{
+			System.out.println("select X or o");
+			chooseLetter = sc.next().charAt(0);
+		}
 		if(chooseLetter == 'x')
 		{
 			System.out.println("player symbol to play the game is : "+chooseLetter);
@@ -152,7 +156,18 @@ public class TicTackToe {
 		else
 			return 0;
 	}
-
+	
+	public void desireMove()
+	{
+	System.out.println("--------------");
+	System.out.println("|  " +board[0]+ " | "+board[1] + " | "+board[2]+ " | ");
+	System.out.println("--------------");
+	System.out.println("|  " +board[3]+ " | "+board[4] + " | "+board[5]+ " | ");
+	System.out.println("--------------");
+	System.out.println("|  " +board[6]+ " | "+board[7] + " | "+board[8]+ " | ");
+	System.out.println("--------------");
+	
+	}
 	
 	
 	public static void main(String[] args) {
