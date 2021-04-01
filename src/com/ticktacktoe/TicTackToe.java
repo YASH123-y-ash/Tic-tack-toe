@@ -11,54 +11,68 @@ import java.util.Scanner;
 
 public class TicTackToe {
 
-	public static char[] board = new char[9];
+	static final int HEAD = 1, TAIL = 0;
+	static String lastPlayed; 
+	static char playerSymbol;
+	static char computerSymbol;
+	static Scanner sc = new Scanner(System.in);
 
-	public static char playerSymbol;
-	public static char computerSymbol;
-
-
-	//for size of board
-	public static void sizeOfBoard()
+	//  Creating an empty Board 
+	public static char[] createEmptyBoard() 
 	{
-		for(int i=0; i<board.length;i++)
+		char[] board = new char[9];
+		for (int i = 1; i < board.length; i++) 
 		{
 			board[i] = ' ';
 		}
+		return board;
 	}
 
-	//choose between x or o
-	public static void chooseXorO()
+	// Taking Input from player to choose between X or O 
+	public static char chooseXorO() {
+		System.out.println("Enter the symbol:'X' or 'O' ");
+		char symbol = Character.toUpperCase(sc.next().charAt(0));
+		if (symbol == 'X' || symbol == 'O') {
+			playerSymbol(symbol);
+			return symbol;
+		} else {
+			System.out.println("Invalid Character. Try Again.");
+			return chooseXorO();
+		}
+	}
+
+	// Determine letter for player and computer to play game 
+	public static void playerSymbol(char playerSymbols) {
+
+		if(playerSymbols == 'X')
+		{
+			playerSymbol = 'X';
+			computerSymbol = 'O';
+		}
+		else if(playerSymbols == 'O')
+		{
+			playerSymbol = 'O';
+			computerSymbol = 'X';
+		}
+		System.out.println("player letter to play is "+playerSymbol);
+		System.out.println("computer letter to play is "+computerSymbol);
+
+	}
+
+	//showing empty Board 
+	public static void showBoard(char[] board)
 	{
-		System.out.println("Choose x or o");
-		Scanner sc = new Scanner(System.in);
-		char chooseLetter = sc.next().charAt(0);
-		while(chooseLetter != 'x' && chooseLetter != 'o')
-		{
-			System.out.println("select X or o");
-			chooseLetter = sc.next().charAt(0);
-		}
-		if(chooseLetter == 'x')
-		{
-			System.out.println("player symbol to play the game is : "+chooseLetter);
-			System.out.println("computer symbol to play the game is : "+ "o");
-
-			playerSymbol = 'x';
-
-		}
-		else if(chooseLetter == 'o')
-		{
-			System.out.println("computer symbol to play the game is : "+chooseLetter);
-			System.out.println("player symbol to play the game is : "+"x");
-
-			computerSymbol = 'o';
-
-		}
-		else
-			System.out.println("invalid input choose between x or o");
+		System.out.println("--------------");
+		System.out.println("|  " +board[0]+ " | "+board[1] + " | "+board[2]+ " | ");
+		System.out.println("--------------");
+		System.out.println("|  " +board[3]+ " | "+board[4] + " | "+board[5]+ " | ");
+		System.out.println("--------------");
+		System.out.println("|  " +board[6]+ " | "+board[7] + " | "+board[8]+ " | ");
+		System.out.println("--------------");
 	}
 
 	//to choose desired location in a board
-	public static void chooseLocatin()
+	public static void chooseLocatin(char [] board)
 	{	
 		System.out.println("check the index you want to play");
 		Scanner sc1 = new Scanner(System.in);
@@ -127,51 +141,47 @@ public class TicTackToe {
 				break;
 			}
 		}
-		else
-			System.out.println("invalid index try again");
-
 	}
 
-	// to show borad
-	public static void showBoard()
-	{
-		System.out.println("--------------");
-		System.out.println("|  " +board[0]+ " | "+board[1] + " | "+board[2]+ " | ");
-		System.out.println("--------------");
-		System.out.println("|  " +board[3]+ " | "+board[4] + " | "+board[5]+ " | ");
-		System.out.println("--------------");
-		System.out.println("|  " +board[6]+ " | "+board[7] + " | "+board[8]+ " | ");
-		System.out.println("--------------");
-	}
-
-	//to choose who plays first
-	public static  int whoPlaysFirst()
-	{
-
-		int  toss = (int) Math.floor(Math.random() * 10) % 2;
-		if(toss == 1)
-		{
-			return 1;
+	//to take player move
+	public static void movePlayer(char[] board) {
+		System.out.print("Enter the index you want to move to: ");
+		int index = sc.nextInt();
+		while (index < 0 || index > 8) {
+			System.out.print("Wrong Input. Try Again : ");
+			index = sc.nextInt();
 		}
-		else
-			return 0;
+		if (board[index] == ' ') {
+			board[index] = playerSymbol;
+			showBoard(board);
+		} else {
+			System.out.println("Index not available. Choose another");
+			movePlayer(board);
+		}	
+	}
+
+	// toss to who plays first
+	public static void toss(char[] board) {
+		int toss = (int) (Math.random() * 2 % 2);
+		if (toss == HEAD) {
+			System.out.println("Player Wins the Toss.");
+			lastPlayed = "Player";
+			movePlayer(board);						
+		}else {
+			System.out.println("Computer Wins the Toss.");
+			lastPlayed = "Computer";
+			
+		}
 	}
 
 
 	public static void main(String[] args) {
 
-		sizeOfBoard();
-		chooseXorO();
-		showBoard();
-		chooseLocatin();
-
-		int toss = whoPlaysFirst();
-		if(toss == 1)
-		{
-			System.out.println("player will play first");
-		}
-		else
-			System.out.println("computer will play first");
+		char[] board = createEmptyBoard();
+		playerSymbol = chooseXorO();
+		showBoard(board);
+		chooseLocatin(board);
+		toss(board);
 	}
 }
 
