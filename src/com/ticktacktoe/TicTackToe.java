@@ -145,7 +145,7 @@ public class TicTackToe {
 	public static void movePlayer(char[] board) {
 		System.out.print("Enter the index you want to move to: ");
 		int index = sc.nextInt();
-		while (index < 1 || index > 9) {
+		while (index < 0 || index > 8) {
 			System.out.print("Wrong Input. Try Again : ");
 			index = sc.nextInt();
 		}
